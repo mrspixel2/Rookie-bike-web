@@ -1,0 +1,110 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+
+
+    <div class="row">
+    <div class="col-md-12">
+    <div class="tabbable-line">
+
+    <div class="tab-content">
+
+    <div class="tab-pane active fontawesome-demo" id="tab1">
+
+    <div class="row">
+
+
+    <div class="col-md-12">
+
+    <div class="card card-box">
+    <div class="card-head">
+        <header> Liste des reclamation </header>
+       
+    </div>
+
+    <div class="card-body ">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-6">
+           
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+            <div class="btn-group pull-right">
+                <a class="btn deepPink-bgcolor  btn-outline dropdown-toggle"
+                   data-toggle="dropdown">Tools
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu pull-right">
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-print"></i> Print </a>
+                    </li>
+                    <li>
+                        <div  id="mydiv" onclick="myFunction()">
+                            <i class="fa fa-file-pdf-o"></i> Save as
+                            PDF </a>
+                    </li>
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="table-scrollable">
+    <table
+            class="table table-striped table-bordered table-hover table-checkable order-column valign-middle"
+            id="example4">
+        <thead>
+        <tr>
+     
+                <th>Contenu</th>
+                <th>Type</th>
+                <th>Email Owner</th>
+                <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="odd gradeX">
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.contenu }}</td>
+                <td>{{ reclamation.etat }}</td>
+                <td>{{ reclamation.type }}</td>                <td>{{ reclamation.produit.email }}</td>
+
+                <td>
+                    <ul>
+                        <li>
+   <a href="{{path('reclamation_delete', { 'id': reclamation.id })  }}"
+                   class="btn btn-primary btn-xs">
+                    <i class="fa fa-pencil"></i>
+                </a>                        </li>
+                    </ul>
+                </td>
+               
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <script type="text/javascript">
+function myFunction() {
+    
+    $.ajax({
+    type: "GET",
+    url: "{{ path('reclamation_pdf') }}",
+    success: function(msg){
+        window.open("{{ path('reclamation_pdf') }}");
+    }
+});
+   }
+     </script>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+{% endblock %}    

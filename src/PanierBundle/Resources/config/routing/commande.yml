@@ -1,0 +1,35 @@
+commande_index:
+    path:     /
+    defaults: { _controller: "PanierBundle:Commande:index" }
+    methods:  GET
+
+commande_show:
+    path:     /{id}/show
+    defaults: { _controller: "PanierBundle:Commande:show" }
+    methods:  GET
+
+passer_commande:
+    path:     /new
+    defaults: { _controller: "PanierBundle:Commande:new" }
+    methods:  [GET, POST]
+facture:
+    path:     /facture
+    defaults: { _controller: "PanierBundle:Commande:facture" }
+    methods:  [GET, POST]
+sauv_commande:
+    path:     /save
+    defaults: { _controller: "PanierBundle:Commande:save" }
+    methods:  [GET, POST]
+mes_commande:
+    path:     /mescommande
+    defaults: { _controller: "PanierBundle:Commande:mescommande" }
+    methods:  [GET, POST]
+commande_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PanierBundle:Commande:edit" }
+    methods:  [GET, POST]
+
+commande_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "PanierBundle:Commande:delete" }
+    methods:  [GET, DELETE]

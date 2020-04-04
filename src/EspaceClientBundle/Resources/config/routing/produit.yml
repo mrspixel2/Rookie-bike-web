@@ -1,0 +1,43 @@
+Espace_index:
+    path:     /
+    defaults: { _controller: "EspaceClientBundle:Produit:index" }
+    methods:  GET
+
+Espace_show:
+    path:     /{idvelo}/show
+    defaults: { _controller: "EspaceClientBundle:Produit:show" }
+    methods:  GET
+
+Espace_new:
+    path:     /new
+    defaults: { _controller: "EspaceClientBundle:Produit:new" }
+    methods:  [GET, POST]
+Espace_etat:
+    path:     /etat
+    defaults: { _controller: "EspaceClientBundle:Produit:etat" }
+    methods:  [GET, POST]
+Espace_produit:
+    path:     /mesproduit
+    defaults: { _controller: "EspaceClientBundle:Produit:mesproduit" }
+    methods:  [GET, POST]
+Espace_contact:
+    path:     /contacter
+    defaults: { _controller: "EspaceClientBundle:Produit:contacter" }
+    methods:  [GET, POST]
+Espace_mail:
+    path:     /mail
+    defaults: { _controller: "EspaceClientBundle:Produit:mail" }
+    methods:  [GET, POST]
+Espace_stat:
+    path:     /stat
+    defaults: { _controller: "EspaceClientBundle:Produit:stat" }
+    methods:  [GET, POST]
+Espace_edit:
+    path:     /{idvelo}/edit
+    defaults: { _controller: "EspaceClientBundle:Produit:edit" }
+    methods:  [GET, POST]
+
+Espace_delete:
+    path:     /{idvelo}/delete
+    defaults: { _controller: "EspaceClientBundle:Produit:delete" }
+    methods:  [GET, DELETE]

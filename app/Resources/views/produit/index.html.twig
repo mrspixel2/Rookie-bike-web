@@ -1,0 +1,149 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!--Start shop-->
+    <div class="tz-shop">
+        <div class="container">
+            <div class="row">
+                    <!--Start shop content-->
+                    <div class="tz-shop-content">
+                        <ul class="tz-breadcrumbs">
+                            <li>
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="current">
+                                Category
+                            </li>
+                                                            <ul class="pagination_list pull-right">
+
+        <li>
+            <a href="{{ path('Espace_new') }}">Ajouter Un produit</a>
+        </li>
+    </ul>
+                        </ul>
+
+                        <div class="shop-banner">
+                            <img src="images/product/banner.jpg" alt="banner">
+                        </div>
+                        <div class="catalog-meta">
+                            <div class="catalog_top">
+                                <span class="style-switch">
+                                    <a class="nav-grid-view fa fa-th-large active"></a>
+                                    <a class="nav-list-view fa fa-list"></a>
+                                </span>
+                                <form class="shop-order">
+                                    <label class="form-arrow">
+                                        <select id="mySelect" onchange="myFunction()" class="number-item" name="number_item">
+                                            <option value="12">Produit/page</option>
+                                            <option value="25">25 Produit/page</option>
+                                            <option value="10">10 Produit/page</option>
+                                            <option value="5">5 Produit/page</option>
+                                            <option value="2">2 Produit/page</option>
+                                        </select>
+                                    </label>
+                                    <label class="form-arrow">
+                                        <select  id="orderby"name="orderby" onchange="myFunction2()" class="orderby">
+                                            <option value="'">Trie par: </option>
+                                            <option value="prix">prix</option>
+                                            <option value="date">date</option>
+                                        </select>
+                                    </label>
+                                </form>
+                            </div>
+                        </div>
+                    </div> 
+                           <div class="tz-product row grid-eff">
+ {% for produit in produits %}
+           
+                     
+    
+                            <!--Product item-->
+                            <div class="product-item col-md-3 col-sm-6">
+                                <div class="item">
+                                    <div class="product-item-inner">
+                                        
+                                        <div class="product-thumb">
+                                                <img src="{{ asset('images/'~produit.image) }}"style="
+                                                width: 270px;height: 240px;" alt="{{ produit.nom }}">
+                                            </div>
+                                       
+                                        <div class="product-info">
+                                            <h4><a href="{{ path('Espace_show', { 'idvelo': produit.idvelo }) }}">Nom Produit : {{ produit.nom }}</a></h4>
+                                            <span class="p-meta">
+
+                                                <span class="p-price">Prix : {{ produit.prix }} dt </span>
+                                                <span class="p-vote">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            </span>
+                                            <span class="p-color">
+                                                 <i class="fa fa-circle light-blue"></i>
+                                                <i class="fa fa-circle orange"></i>
+                                                <i class="fa fa-circle blueviolet"></i>
+                                                <i class="fa fa-circle orange-dark"></i>
+                                                <i class="fa fa-circle steelblue"></i>
+                                            </span>
+                                                <p>
+                                                  Déscription : {{ produit.description }}         
+                                                </p>
+                                                 <p>
+                                                  Localisation :  {{ produit.Localisation }}         
+                                                </p>
+                                                
+                                            <span class="p-mask">
+                                              
+                                               <span class="quick-view">
+                                                    <a href="{{ path('Espace_contact', { 'idvelo': produit.idvelo }) }}"> Contacter Vendeur</a>
+                                                </span>
+                                               <span class="quick-view">
+                                                    <a href="{{ path('Espace_show', { 'idvelo': produit.idvelo }) }}"><i class="fa fa-eye"></i>plus Détails </a>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                      
+                            <!--End product item-->
+ {% endfor %}
+ 
+</div>      </div> 
+
+
+</div> 
+
+                        <nav class="pagination">
+                            <ul class="pagination_list pull-center">
+                                    <div class="navigation">
+                                            {{ knp_pagination_render(produits) }}
+                                        </div>
+                            </ul>
+                        </nav>
+                   
+                    <!--End shop content-->
+    
+
+    
+    </div>
+    {% endblock %}
+    {% block javascripts %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+function myFunction() {
+    
+  var x = document.getElementById("mySelect").value;
+                            window.location.href = "http://localhost/pidev/web/app_dev.php/Espace?items="+x;        
+}
+function myFunction2() {
+    
+    var x = document.getElementById("orderby").value;
+                              window.location.href = "http://localhost/pidev/web/app_dev.php/Espace?tri="+x;        
+  }
+     </script>
+{% endblock %}    
+

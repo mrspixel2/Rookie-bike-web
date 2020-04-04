@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Commandes list</h1>
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Reference</th>
+            <th scope="col">date</th>
+            <th scope="col">email</th>
+            <th scope="col">montant total</th>
+                        <th scope="col">adress livraison</th>
+
+                        <th scope="col">qrcode</th>
+            <th scope="col">Action</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+             <td > <a href="{{ path('commande_show', { 'id': commande.id }) }}" > {{ commande.id }} </a></td>
+                <td>{{ commande.date }}</td>
+                <td>{{ commande.userid.email }}</td>
+                <td>{{ commande.montant }}</td>
+                                                <td>{{ commande.adress }}</td>
+
+                            <td><img src="{{ commande.qrcode  }} " width="60px" height="50px" /> </td>
+
+                <td>
+                <a class="btn btn-outline-danger"  href="{{ path('commande_delete', { 'id': commande.id }) }}"> Delete </a>
+                                  <a  class="btn" onclick="myFunction()" >generer facture</a>
+
+            
+        </li>
+                
+            </td>
+        </tr>
+            </tr>
+              
+              <tr>
+                   <th scope="col">Produit de commande</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+           
+            
+        </tr>
+                   {% for Produit in commande.produit %}
+                     <tr>
+                     <td></td>
+                <td>{{ Produit.nom }}</td>
+                                <td>{{ Produit.prix }}</td>
+
+                <td>
+                  </tr>
+                   </hr>
+                 {% endfor %}
+            <script type="text/javascript">
+function myFunction() {
+    
+        window.open("{{ path('facture', { 'id': commande.id }) }}");
+   
+   }
+     </script>
+     
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+                      
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+     </script>
+{% endblock %}    

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+                </br>
+
+        <h1 class="large-ttle">Contacter venduer</h1>
+        <div id="contact-form" class="contact-respond">
+            <h3 class="tz-title">Envoyer un message</h3>
+            <form id="commentform" class="contact-form-7">
+                    <p class="comment-for-url">
+                From : 
+                </p>
+                <p class="comment-for-author">
+                        <input disabled type="text" class="url" placeholder="{{app.user.Firstname}}" value="{{app.user.firstname}}">
+                        
+                </p>
+                <p class="comment-for-email">
+                        <input disabled type="text" class="url" placeholder="{{app.user.Lastname}}" value="{{app.user.firstname}}">
+               
+                </p>
+                <p class="comment-for-url">
+                        To  : 
+                        </p>
+                <p class="comment-for-url">
+                    <input disabled type="url" class="url" placeholder=" {{produit.email}}" value="{{produit.email}}">
+                    
+                </p>
+                <p class="comment-for-url">
+                        Object  : 
+                        </p>
+                <p class="comment-for-url">
+                    <input disabled type="url" class="url" placeholder="A propos le produit :  {{produit.nom}}" value="A propos le produit : {{produit.nom}}">
+                    
+                </p>
+                <p class="comment-for-url">
+                        Comment  : 
+                        </p>
+                <p class="comment-for-content">
+                    <textarea class="comment" id="comment">...</textarea>
+                    <i class="fa fa-comment"></i>
+                </p>
+                <p class="comment-for-submit">
+                    <input name="submit" type="button" onclick="myFunction()" id="submit" class="submit" value="Confirmer">
+                </p>
+            </form>
+        </div>
+        
+    </div>
+    </div>
+</div>
+</div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+function myFunction() {
+                                  window.location.href = "http://localhost/pidev/web/app_dev.php/Espace/mail?idvelo="+{{produit.idvelo}}+"&&content="+document.getElementById("comment").value;        
+   }
+     </script>
+{% endblock %}    

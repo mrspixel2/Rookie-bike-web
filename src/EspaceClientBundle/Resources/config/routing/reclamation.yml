@@ -1,0 +1,27 @@
+reclamation_index:
+    path:     /
+    defaults: { _controller: "EspaceClientBundle:Reclamation:index" }
+    methods:  GET
+reclamation_pdf:
+    path:     /pdf
+    defaults: { _controller: "EspaceClientBundle:Reclamation:index2" }
+    methods:  GET
+reclamation_show:
+    path:     /{id}/show
+    defaults: { _controller: "EspaceClientBundle:Reclamation:show" }
+    methods:  GET
+
+reclamation_new:
+    path:     /new
+    defaults: { _controller: "EspaceClientBundle:Reclamation:new" }
+    methods:  [GET, POST]
+
+reclamation_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EspaceClientBundle:Reclamation:edit" }
+    methods:  [GET, POST]
+
+reclamation_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EspaceClientBundle:Reclamation:delete" }
+    methods:  GET

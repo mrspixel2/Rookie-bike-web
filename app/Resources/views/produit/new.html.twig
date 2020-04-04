@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+        
+        <h1>Produit creation</h1>    
+  <div class="tz-register">
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+</div>
+    <ul>
+        <li>
+            <a href="{{ path('Espace_index') }}">Back to the list</a>
+        </li>
+    </ul>
+
+{% endblock %}

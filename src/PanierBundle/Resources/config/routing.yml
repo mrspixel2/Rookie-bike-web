@@ -1,0 +1,24 @@
+panier_commande:
+    resource: "@PanierBundle/Resources/config/routing/commande.yml"
+    prefix:   /commande
+coupon:
+    path:     /coupon
+    defaults: { _controller: PanierBundle:Default:coupon }
+panier_homepage:
+    path:     /produit
+    defaults: { _controller: PanierBundle:Default:index }
+montant_panier:
+    path:     /montantpanier
+    defaults: { _controller: PanierBundle:Default:montant }
+add_to_panier:
+    path:     /addtopanier
+    defaults: { _controller: PanierBundle:Default:add }
+delete_from_panier:
+    path:     /deletefrompanier
+    defaults: { _controller: PanierBundle:Default:delete }
+get_panier:
+    path:     /getpanier
+    defaults: { _controller: PanierBundle:Default:get }
+empty_panier:
+    path:     /emptypanier
+    defaults: { _controller: PanierBundle:Default:empty }

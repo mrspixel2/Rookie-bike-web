@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!--Start shop single-->
+    <section class="tz-shop-single">
+            <div class="container">
+    
+                <!--Start Breadcrumbs-->
+                <ul class="tz-breadcrumbs">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li class="current">
+                        Category
+                    </li>
+                </ul>
+                <!--End Breadcrumbs-->
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+    
+                        <!--Shop images-->
+                        <div class="shop-images">
+                            <ul class="single-gallery">
+                                <li>
+                                        <img src="{{ asset('images/'~produit.image) }}"style="
+                                        width: 455px;height: 300px;" alt="{{ produit.nom }}">
+                                </li>
+                               
+                            </ul>
+                           
+                        </div>
+                        <!--End shop image-->
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <!--Shop content-->
+                        <div class="entry-summary">
+                            <h1>{{ produit.nom }}</h1>
+                            <span class="p-vote">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </span>
+                            <p class="product-price">
+                                <span class="price">{{ produit.prix }} dt </span>
+                                <span class="stock">Localisation:  <span>{{ produit.Localisation }}</span></span>
+
+                            </p>
+                            <div class="description">
+                                  
+                                <p>
+                                        {{ produit.description }}                                </p>
+                                        Date D'ajoute : {{ produit.date }}
+                            </div>
+                           
+                        </div>
+                        <!--End shop content-->
+                        <span class="single_add_to_wishlist">
+                                <a href="{{ path('Espace_contact', { 'idvelo': produit.idvelo }) }}">Contacter Vendeur </a>
+                            </span>
+                           <span class="single_add_to_cart_button">
+                                <a href="{{ path('reclamation_new', { 'idvelo': produit.idvelo }) }}">Passer Reclamation </a>
+                            </span>
+                    </div>
+    
+                </div>
+            </div>
+
+    <ul>
+        <li>
+            <a href="{{ path('Espace_index') }}">Retour</a>
+        </li>
+
+
+    </ul>
+{% endblock %}

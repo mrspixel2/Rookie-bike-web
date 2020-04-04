@@ -1,0 +1,206 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="shop-cart">
+        <div class="container">
+            <!--Start Breadcrumbs-->
+            <ul class="tz-breadcrumbs">
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li class="current">
+                    Checkout
+                </li>
+            </ul>
+            <!--End Breadcrumbs-->
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="page-title">Checkout</h1>
+
+                    <!--Shop info-->
+                    <div class="shop-info">
+                        <p>
+Quelques étapes de plus et votre prêt à partir </p>
+                    </div>
+                    <!--End shop info-->
+
+                    <!--Start form checkout-->
+                    <form>
+                        <div class="shop-billing-fields">
+                            <h3>Détails de la facturation</h3>
+                            <p class="form-row form-row-first">
+                                <label for="billing_first_name" class="">First Name <span class="required">*</span></label>
+                                <input type="text" disabled class="input-text " name="billing_first_name" id="billing_first_name" placeholder="" value="{{app.user.firstname}}">
+                            </p>
+                            <p class="form-row form-row-last">
+                                <label for="billing_last_name" class="">Last Name <span class="required">*</span></label>
+                                <input type="text" disabled class="input-text " name="billing_last_name" id="billing_last_name" placeholder="" value="{{app.user.lastname}}">
+                            </p>
+                            <div class="clear"></div>
+                             <p class="form-row form-row-first">
+                                <label for="email">Email Address<span class="required">*</span></label>
+                                <input type="email" disabled class="input-text " name="email" id="email" placeholder="" value="{{app.user.lastname}}">
+                            </p>
+                            <div class="clear"></div>
+                           
+                            <p class="form-row">
+                                <label for="address">Address  <span class="required">*</span></label>
+                                <input type="text"   class="input-text " name="address" id="address" placeholder="" value="">
+                            </p>
+                                                    <input type="hidden"   class="input-text " name="cou" id="cou" placeholder="" value="0">
+
+                        </div>
+                                            <input name="submit" type="button" onclick="myFunction2()" id="submit" class="submit" value="Submit form">
+
+                    </form>
+                    <!--End form checkout-->
+
+                </div>
+                <div class="col-md-6">
+
+                    <!--Order review-->
+                    <div id="order_review">
+                        <h3>Votre Commande</h3>
+
+                        <!--Shop table-->
+                        <table class="shop_table">
+                            <thead>
+                                <tr>
+                                    <th class="product-name">Produit</th>
+                                    <th class="product-total">Montant Produit</th>
+                                </tr>
+                            </thead>
+                            <tbody id="produit">
+                               
+                            
+                            </tbody>
+                            <tfoot>
+                            <tr class="cart-subtotal">
+                                <th>Montant Total</th>
+                                <td><span id="mon2" class="amount"></span></td>
+                            </tr>
+
+                            <tr class="shipping">
+                                <th>Remise</th>
+                                <td>
+                                    <form   method="post">
+                                                             <div class="shop-billing-fields">
+  <p class="form-row form-row-first">
+                                <label for="coupon" class="">coupon <span class="required">*</span></label>
+                                <input type="text"  class="input-text " name="coupon" id="coupon" placeholder="" value="">
+                            </p>
+                            <p class="form-row form-row-last">
+                                                                            <input name="submit" class="input-text"  type="button" onclick="myFunction5()" id="submit" class="submit" value="Verifier">
+                            </p>
+                            <div class="clear"></div>
+                                                                                  </div>
+
+                                    </form>
+                                </td>
+                            </tr>
+
+                            <tr class="order-total">
+                                <th>Montant Final</th>
+                                <td><strong><span class="amount" id ="mon"></span></strong> </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                        <!--End shop table-->
+
+
+                    </div>
+                    <!--End order review-->
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+$(function() {
+myFunction1();
+});
+
+      function myFunction1() {
+          var entitySelector = $("#produit").html('');
+    $.ajax({
+    type: "POST",
+    url: "{{ path('get_panier') }}",
+    data: {
+    },
+    dataType: "text",
+    success: function(msg)
+ 
+    {   
+        var result = JSON.parse(msg);
+                                $.each(result, function(key, msg) {
+              entitySelector.append(
+            ' <tr class="cart_item">'
+                             +'       <td class="product-name">'
+                              +          msg[2] 
+                                +'        <strong class="product-quantity">  x' +msg[1]+'</strong>'
+                                  +'  </td>'
+                                   +' <td class="product-total">'
+                                     +'   <span class="amount">' +msg[5]*msg[1]+' </span>'
+                                   +' </td>'
+                               +' </tr>'+''
+      
+                                ); });
+                    
+    myFunction4();
+        }
+    })
+    };
+function myFunction4() {
+           
+   
+    $.ajax({
+    type: "POST",
+    url: "{{ path('montant_panier') }}",
+    data: {
+    },
+    dataType: "text",
+    success: function(msg){
+             $("#mon").append(msg+' dt');
+                            $("#mon2").append(msg +' dt');
+
+    }
+}); }
+function myFunction5() {
+           
+   
+    $.ajax({
+    type: "POST",
+    url: "{{ path('coupon') }}",
+    data: {
+         'coupon' : document.getElementById("coupon").value
+    },
+    dataType: "text",
+    success: function(msg){
+        if (msg != 0) {
+              $("#mon").text('');    
+              document.getElementById("cou").value = msg;             
+
+  $("#mon").append(msg +' dt');                   
+    }
+    else {
+        alert("verifier coupon");
+    } }
+}); }
+function myFunction2() {
+    
+     var r = confirm("Confirmer!");
+  if (r == false) {
+  
+  } else {
+                                  window.location.href = "http://localhost/pid/web/app_dev.php/commande/save?cou="+ document.getElementById("cou").value+"&&address="+document.getElementById("address").value ;        
+  }
+   }
+     </script>
+{% endblock %}    

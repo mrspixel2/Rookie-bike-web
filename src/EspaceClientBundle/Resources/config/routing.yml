@@ -1,0 +1,11 @@
+espace_client_Espace:
+    resource: "@EspaceClientBundle/Resources/config/routing/produit.yml"
+    prefix:   /Espace
+
+espace_client_homepage:
+    path:     /Espaces
+    defaults: { _controller: EspaceClientBundle:Produit:index2 }
+
+Espace_client_reclamation:
+    resource: "@EspaceClientBundle/Resources/config/routing/reclamation.yml"
+    prefix:   /reclamation
