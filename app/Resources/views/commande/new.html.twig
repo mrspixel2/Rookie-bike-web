@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     <section class="shop-cart">
         <div class="container">
             <!--Start Breadcrumbs-->
@@ -40,7 +41,7 @@ Quelques étapes de plus et votre prêt à partir </p>
                             <div class="clear"></div>
                              <p class="form-row form-row-first">
                                 <label for="email">Email Address<span class="required">*</span></label>
-                                <input type="email" disabled class="input-text " name="email" id="email" placeholder="" value="{{app.user.lastname}}">
+                                <input type="email" disabled class="input-text " name="email" id="email" placeholder="" value="{{app.user.email}}">
                             </p>
                             <div class="clear"></div>
                            
@@ -199,7 +200,7 @@ function myFunction2() {
   if (r == false) {
   
   } else {
-                                  window.location.href = "http://localhost/pid/web/app_dev.php/commande/save?cou="+ document.getElementById("cou").value+"&&address="+document.getElementById("address").value ;        
+                                  window.location.href = "http://localhost/pide/web/app_dev.php/commande/save?cou="+ document.getElementById("cou").value+"&&address="+document.getElementById("address").value ;        
   }
    }
      </script>

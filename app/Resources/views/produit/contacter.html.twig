@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+   <div class="container">
+
                 </br>
 
         <h1 class="large-ttle">Contacter venduer</h1>
@@ -15,7 +17,7 @@
                         
                 </p>
                 <p class="comment-for-email">
-                        <input disabled type="text" class="url" placeholder="{{app.user.Lastname}}" value="{{app.user.firstname}}">
+                        <input disabled type="text" class="url" placeholder="{{app.user.Lastname}}" value="{{app.user.Lastname}}">
                
                 </p>
                 <p class="comment-for-url">
@@ -57,7 +59,9 @@
 
     <script type="text/javascript">
 function myFunction() {
-                                  window.location.href = "http://localhost/pidev/web/app_dev.php/Espace/mail?idvelo="+{{produit.idvelo}}+"&&content="+document.getElementById("comment").value;        
-   }
+    r =   confirm("Press a button!");
+if (r) {
+                                  window.location.href = "http://localhost/pide/web/app_dev.php/Espace/mail?idvelo="+{{produit.idvelo}}+"&&content="+document.getElementById("comment").value;        
+   }}
      </script>
 {% endblock %}    

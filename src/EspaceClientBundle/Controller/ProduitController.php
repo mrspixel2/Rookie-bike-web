@@ -58,7 +58,25 @@ class ProduitController extends Controller
             'produits' => $result,
         ));
     }
-    
+
+    /**
+     * Lists all reclamation entities.
+     *
+     */
+    public function produitsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $reclamations = $em->getRepository('EspaceClientBundle:Produit')->findAll();
+        foreach ($reclamations as $p) {
+            $d =   strripos($p->getImage(),"/");
+            $p->setImage(substr($p->getImage(),$d+1));
+           }
+        return $this->render('produit/produits.html.twig', array(
+            'produits' => $reclamations,
+        ));
+    }
+
     /**
      * Creates a new produit entity.
      *
@@ -219,7 +237,15 @@ class ProduitController extends Controller
       
         return $this->redirectToRoute('Espace_index');
     }
-
+    public function delete2Action(Request $request, Produit $produit)
+    {
+        
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($produit);
+            $em->flush();
+      
+        return $this->redirectToRoute('Espace_produits');
+    }
     /**
      * Creates a form to delete a produit entity.
      *

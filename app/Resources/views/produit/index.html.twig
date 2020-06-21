@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+   <div class="container">
+
     <!--Start shop-->
     <div class="tz-shop">
         <div class="container">
@@ -16,15 +18,13 @@
                             </li>
                                                             <ul class="pagination_list pull-right">
 
-        <li>
+        <button>
             <a href="{{ path('Espace_new') }}">Ajouter Un produit</a>
-        </li>
+        </button>
     </ul>
                         </ul>
 
-                        <div class="shop-banner">
-                            <img src="images/product/banner.jpg" alt="banner">
-                        </div>
+                       
                         <div class="catalog-meta">
                             <div class="catalog_top">
                                 <span class="style-switch">
@@ -137,12 +137,12 @@
 function myFunction() {
     
   var x = document.getElementById("mySelect").value;
-                            window.location.href = "http://localhost/pidev/web/app_dev.php/Espace?items="+x;        
+                            window.location.href = "http://localhost/pide/web/app_dev.php/Espace?items="+x;        
 }
 function myFunction2() {
     
     var x = document.getElementById("orderby").value;
-                              window.location.href = "http://localhost/pidev/web/app_dev.php/Espace?tri="+x;        
+                              window.location.href = "http://localhost/pide/web/app_dev.php/Espace?tri="+x;        
   }
      </script>
 {% endblock %}    

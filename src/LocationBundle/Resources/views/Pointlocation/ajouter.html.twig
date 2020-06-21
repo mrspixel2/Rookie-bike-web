@@ -1,0 +1,58 @@
+{% extends "::back.html.twig" %}
+
+{% block title %}LocationBundle:Pointlocation:ajouter{% endblock %}
+
+{% block body %}
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Locations</li>
+                <li class="breadcrumb-item active"><a href="{{ path('point_index') }}">Points de Relais</a></li>
+                <li class="breadcrumb-item active"><a href="{{ path('point_ajouter') }}">Ajouter</a></li>
+            </ol>
+        </div>
+        <div class="col-md-7 align-self-center text-right">
+            <div class="d-flex justify-content-end align-items-center">
+
+                <a href="{{ path('point_ajouter') }}"  type="button" class="btn btn-info "><i class="fa fa-plus-circle"></i> Ajouter</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Ajouter Votre Points Relais</h4>
+                    <form method="post"  enctype="multipart/form-data">
+                        {{ form_start(form) }}
+                        <div class="form-group ">
+                            <label for="desc"  class="control-label">Region</label>
+                            <input type="text" class="form-control"  id="Region"  name="Region" minlength="4" maxlength="300" required >
+                        </div>
+                        <div class="form-group ">
+                            <label for="desc"  class="control-label">Nom</label>
+                            <input type="text" class="form-control"  id="nom" rows="4" name="nom" minlength="4" maxlength="300" required >
+                        </div>
+                        <div class="form-group ">
+                            <label for="num"  class="control-label">Longitude</label>
+                            <input class="form-control"   type="text" id="longitude" name="longitude" required>
+                        </div>
+                        <div class="form-group ">
+                            <label for="num"  class="control-label">Latitude</label>
+                            <input class="form-control"   type="text" id="latitude" name="latitude" required>
+                        </div>
+                        <div class="form-group ">
+                            {{ include('@Map/Default/index.html.twig') }}
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i>Ajouter</button>
+                            <a type="button" class="btn btn-secondary" href="{{ path('point_index') }}">Annuler</a>
+                        </div>
+                        {{ form_end (form) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

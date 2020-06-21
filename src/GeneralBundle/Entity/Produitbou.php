@@ -3,15 +3,18 @@
 namespace GeneralBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use SBC\NotificationsBundle\Builder\NotificationBuilder;
 use Symfony\Component\Validator\Constraints as Assert;
+use SBC\NotificationsBundle\Model\NotifiableInterface;
+
 
 /**
  * Produitbou
  *
  * @ORM\Table(name="produitbou")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="GeneralBundle\Repository\ProduitbouRepository")
  */
-class Produitbou
+class Produitbou implements NotifiableInterface
 {
     /**
      * @var integer
@@ -57,7 +60,7 @@ class Produitbou
      */
     private $qtetotal;
 
-    /**
+      /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="PanierBundle\Entity\Commande", mappedBy="produit")
@@ -71,7 +74,33 @@ class Produitbou
      */
     private $panier;
 
+    /**
+     * @var Store
+     *
+     * @ORM\ManyToOne(targetEntity="Store")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="store_id", referencedColumnName="id")
+     * })
+     */
+    private $idStore;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Categorie", type="string", length=255, nullable=true)
+     */
+    private $categorie;
+    static $count; 
+      
+    public static function getCount() { 
+        return self::$count++; 
+    } 
+    static $somme; 
+      
+    public static function getSomme() { 
+       
+        return self::$somme; 
+    } 
     /**
      * Constructor
      */
@@ -98,7 +127,7 @@ class Produitbou
     }
 
     /**
-     * @return int
+     * @return float
      */
     public function getPrix()
     {
@@ -106,7 +135,7 @@ class Produitbou
     }
 
     /**
-     * @param int $prix
+     * @param float $prix
      */
     public function setPrix($prix)
     {
@@ -208,6 +237,72 @@ class Produitbou
     {
         $this->panier = $panier;
     }
+
+    /**
+     * @return Store
+     */
+    public function getIdStore()
+    {
+        return $this->idStore;
+    }
+
+    /**
+     * @param Store $idStore
+     */
+    public function setIdStore($idStore)
+    {
+        $this->idStore = $idStore;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * @param string $categorie
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+    }
+
+    public function notificationsOnCreate(NotificationBuilder $builder)
+    {
+        $notification = new Notification();
+        $notification
+            ->setTitle("New Product")
+            ->setDescription($this->getNom())
+            ->setRoute("produitbou_afficher")
+            ->setParameters(array('id' => $this->getId()))
+        ;
+
+        $builder->addNotification($notification);
+        return $builder;
+    }
+
+    public function notificationsOnUpdate(NotificationBuilder $builder)
+    {
+        $notification = new Notification();
+        $notification
+            ->setTitle("Update Product")
+            ->setDescription($this->getNom())
+            ->setRoute("produitbou_afficher")
+            ->setParameters(array('id' => $this->getId()))
+        ;
+
+        $builder->addNotification($notification);
+        return $builder;
+    }
+
+    public function notificationsOnDelete(NotificationBuilder $builder)
+    {
+        return $builder;
+    }
+
 
 }
 

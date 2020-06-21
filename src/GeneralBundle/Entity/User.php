@@ -79,13 +79,27 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="PanierBundle\Entity\Commande", mappedBy="userid")
      */
     private $commandes;
+ /**
+     * @ORM\OneToMany(targetEntity="Store", mappedBy="owner")
+     */
+
+    private $stores;
+
+  
 
     public function __construct()
     {
         $this->produits = new ArrayCollection();
         $this->commandes = new ArrayCollection();
+        $this->stores = new ArrayCollection();
+
 
     }
+    public function getStores()
+    {
+        return $this->stores;
+    }
+
     /**
      * @return Collection|produits[]
      */

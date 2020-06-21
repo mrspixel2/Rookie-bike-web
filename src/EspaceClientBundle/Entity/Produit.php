@@ -62,7 +62,7 @@ class Produit
      * @ORM\Column(name="localisation", type="string", length=50, nullable=false)
      */
     private $localisation;
-
+  
     /**
      * @var string
      *
@@ -103,7 +103,7 @@ class Produit
     {
         $this->idvelo = $idvelo;
     }
-
+   
     /**
      * @return string
      */

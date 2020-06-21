@@ -1,0 +1,37 @@
+{% extends "::back.html.twig" %}
+
+{% block title %}LocationBundle:Pointlocation:show{% endblock %}
+
+{% block body %}
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Locations</li>
+                <li class="breadcrumb-item active"><a href="{{ path('point_index') }}">Velos</a></li>
+                <li class="breadcrumb-item active"><a href="{{ path('point_ajouter') }}">Ajouter</a></li>
+            </ol>
+        </div>
+        <div class="col-md-7 align-self-center text-right">
+            <div class="d-flex justify-content-end align-items-center">
+
+                <a href="{{ path('point_ajouter') }}"  type="button" class="btn btn-info "><i class="fa fa-plus-circle"></i> Ajouter</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Column -->
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="">Point de Location</h3>
+                    <h2 class="m-t-40">Nom :  {{ptrel.nom}}</h2>
+
+                    {{ include('@Map/Default/show.html.twig') }}
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="default-page">
+    <div class="container">
+        <div class="tz-register">
+    <h1>Enregistrer votre store</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    {{ form_end(form) }}
+        </div>
+    </div>
+</section>
+{% endblock %}

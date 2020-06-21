@@ -1,0 +1,85 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+   <div class="container">
+
+<div style="width: 100%">
+   <div style="float:left; width: 30%">
+     <div class="form-group ">
+
+        {{ include('@Map/Default/indexglobal.html.twig') }}
+   </div>
+   </div>
+   <div style="float:right;width:70%">
+   
+   
+ 
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+                {% set i = 0 %}
+                {% for flash_message in app.session.flashBag.get('success') %}
+                    {% if(i==0) %}
+                        <div class="alert alert-success alert-rounded"> <img src="../uploads/Annonces/bgapp.jpg" width="30" class="img-circle" alt="img">    {{ flash_message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                        </div>
+                        {% set i=1 %}
+                    {% endif %}
+                {% endfor %}
+
+
+                        <div class="table-responsive">
+                            <table class="table product-overview" id="myTable">
+                                <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Points De Relais</th>
+                                    <th>Matricule</th>
+                                    <th>Modele</th>
+                                    <th>Constructeur</th>
+                                    <th>Prix</th>
+                                    <th>Etat</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for velos in velo %}
+                                    {% if velos.etat == 1      %}
+                                    <tr>
+                                        <td> <img src="{{ asset('images/'~velos.image) }}"alt="iMac" width="100" > </td>
+                                        <td>{{ velos.idPoint.nom}}</td>
+                                        <td>{{ velos.matricule}}</td>
+                                        <td>{{ velos.model}}</td>
+                                        <td>{{ velos.constructeur}}</td>
+                                        <td>{{ velos.prix}}</td>
+                                        <td> Disponible</td>
+                                        <td>
+                                        <a  href="{{ path('client_res', { 'id': velos.id }) }}"class="btn btn-success">
+                                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                                <span><strong>Reserver cette velo</strong></span>
+                                        </a>
+
+                                        </td>
+
+                                    </tr>
+                                {% endif %}
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+</div>      </div>
+                </div>
+            </div>
+</div>
+</div>
+    </div></div>
+{% endblock %}
+

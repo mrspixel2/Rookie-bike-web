@@ -5,8 +5,8 @@ coupon:
     path:     /coupon
     defaults: { _controller: PanierBundle:Default:coupon }
 panier_homepage:
-    path:     /produit
-    defaults: { _controller: PanierBundle:Default:index }
+    path:     /prod
+    defaults: { _controller: PanierBundle:Default:prod }
 montant_panier:
     path:     /montantpanier
     defaults: { _controller: PanierBundle:Default:montant }

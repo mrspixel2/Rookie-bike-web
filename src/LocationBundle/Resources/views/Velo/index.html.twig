@@ -1,0 +1,107 @@
+{% extends "::back.html.twig" %}
+
+{% block title %}LocationBundle:Velo:index
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block body %}
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Locations</li>
+                <li class="breadcrumb-item active"><a href="{{ path('Location') }}">Velos</a></li>
+            </ol>
+        </div>
+        <div class="col-md-7 align-self-center text-right">
+            <div class="d-flex justify-content-end align-items-center">
+
+                <a href="{{ path('velo_ajouter') }}"  type="button" class="btn btn-info "><i class="fa fa-plus-circle"></i> Ajouter</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Column -->
+        <div class="col-lg-12">
+            {% set i = 0 %}
+            {% for flash_message in app.session.flashBag.get('success') %}
+                {% if(i==0) %}
+                    <div class="alert alert-success alert-rounded"> <img src="../uploads/Annonces/bgapp.jpg" width="30" class="img-circle" alt="img">    {{ flash_message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                    </div>
+                    {% set i=1 %}
+                {% endif %}
+            {% endfor %}
+
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table product-overview" id="myTable">
+                            <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Points De Relais</th>
+                                <th>Matricule</th>
+                                <th>Modele</th>
+                                <th>Constructeur</th>
+                                <th>Prix</th>
+                                <th>Etat</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for velos in velo %}
+                                <tr>
+                                    <td> <img src="{{ asset('images/'~velos.image) }}"alt="iMac" width="100" > </td>
+                                    <td>{{ velos.idPoint.nom}}</td>
+                                    <td>{{ velos.matricule}}</td>
+                                    <td>{{ velos.model}}</td>
+                                    <td>{{ velos.constructeur}}</td>
+                                    <td>{{ velos.prix}}</td>
+                                    {% if velos.etat == 1                                    %}
+
+                                        <td> Disponible</td>
+                                    {% else %}
+                                        <td> Non Disponible</td>
+
+                                    {% endif %}
+                                    <td>
+
+
+                                                <a href="{{ path('velo_edit', { 'id': velos.id }) }}" class="btn btn-success">
+                                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                                    <span><strong>Edit</strong></span>
+                                                </a>
+                                                <a href="{{ path('velo_show', { 'id': velos.id }) }}" class="btn btn-info">
+                                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                                    <span><strong>View</strong></span>
+                                                </a>
+                                                <a href="{{ path('velo_delete', { 'id': velos.id }) }}"  class="btn btn-danger" onclick="return confirm('Voulez vous supprimer cette vélo ?')">
+                                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                                    <span><strong>Delete</strong></span>
+
+                                                </a>
+
+
+
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+    </div>
+{% endblock %}

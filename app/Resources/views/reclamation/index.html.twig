@@ -1,6 +1,7 @@
 {% extends 'back.html.twig' %}
 
 {% block body %}
+   <div class="container">
 
 
     <div class="row">
@@ -66,17 +67,15 @@
         {% for reclamation in reclamations %}
             <tr>
                 <td>{{ reclamation.contenu }}</td>
-                <td>{{ reclamation.etat }}</td>
-                <td>{{ reclamation.type }}</td>                <td>{{ reclamation.produit.email }}</td>
+                <td>{{ reclamation.type }}</td>               
+                 <td>{{ reclamation.produit.email }}</td>
 
                 <td>
-                    <ul>
-                        <li>
+                   
    <a href="{{path('reclamation_delete', { 'id': reclamation.id })  }}"
                    class="btn btn-primary btn-xs">
-                    <i class="fa fa-pencil"></i>
-                </a>                        </li>
-                    </ul>
+                    <i class="fa fa-trash"></i>
+                </a>                      
                 </td>
                
             </tr>

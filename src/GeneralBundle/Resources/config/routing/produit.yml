@@ -1,0 +1,81 @@
+Produit_index:
+  path:     /
+  defaults: { _controller: "GeneralBundle:Produitbou:index" }
+  methods:  GET
+Produit:
+  path:     /a
+  defaults: { _controller: "GeneralBundle:Produitbou:a" }
+  methods:  GET
+
+Produit_show:
+  path:     /{idvelo}/show
+  defaults: { _controller: "GeneralBundle:Produitbou:show" }
+  methods:  GET
+
+Produit_afficher:
+   path: /{idvelo}/afficherP
+   defaults: { _controller: "GeneralBundle:Produitbou:afficherP" }
+   methods: GET
+
+
+Produit_ajouter:
+  path:     /ajouter
+  defaults: { _controller: "GeneralBundle:Produitbou:ajouterProduit" }
+  methods:  [GET, POST]
+
+Produit_edit:
+  path:     /{idvelo}/edit
+  defaults: { _controller: "GeneralBundle:Produitbou:edit" }
+  methods:  [GET, POST]
+
+Produit_delete:
+  path:     /{id}/delete
+  defaults: { _controller: "GeneralBundle:Produitbou:delete" }
+  methods:  DELETE
+
+
+
+produit_enrepture:
+  path: /repture
+  defaults: { _controller: "GeneralBundle:Produitbou:produitsEnReptureDeStock"}
+  methods: GET
+
+produit_mesProduits:
+  path: /myproducts
+  defaults: { _controller: "GeneralBundle:Produitbou:mesProduits"}
+  methods: [GET, POST]
+
+produit_searchP:
+  path: /search
+  defaults: { _controller: "GeneralBundle:Produitbou:RechercheP"}
+  methods: GET
+
+produit_bikes:
+  path: /bikes
+  defaults: { _controller: "GeneralBundle:Produitbou:Bikes"}
+  methods: [GET, POST]
+
+produit_gears:
+  path: /gears
+  defaults: { _controller: "GeneralBundle:Produitbou:Gears"}
+  methods: [GET, POST]
+
+produit_rating:
+  path:     /rating
+  defaults: { _controller: GeneralBundle:Rating:rating }
+
+ajax_search:
+  path: /asearch
+  defaults: { _controller: GeneralBundle:Produitbou:search}
+  methods: [GET, POST]
+
+produit_searchPPS:
+  path: /searchPPA
+  defaults: { _controller: "GeneralBundle:Produitbou:RecherchePPA"}
+  methods: GET
+
+
+
+
+
+

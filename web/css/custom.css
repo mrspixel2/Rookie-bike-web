@@ -28,7 +28,7 @@
  * 1.0 - Typography
  * -----------------------------------------------------------------------------
  */
- body {
+body {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   font-size: 16px;
@@ -2539,6 +2539,7 @@ input {
   padding: 0;
 }
 .single_add_to_cart_button {
+  background-image: url("../images/cart_icon.png");
   background-position: 20px center;
   background-color: #f44336;
   padding: 12px 23px 12px 53px;
@@ -2553,7 +2554,7 @@ input {
 }
 .single_add_to_cart_button:hover,
 .single_add_to_cart_button:focus {
-  background-color: #ffffff;
+  background-color: #212121;
 }
 .single_add_to_wishlist {
   background-image: url("../images/wishlist_black.png");

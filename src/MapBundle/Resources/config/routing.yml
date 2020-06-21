@@ -1,0 +1,9 @@
+test_homepage:
+    path:     /
+    defaults: { _controller: MapBundle:Default:index }
+test_affiche:
+    path:     /show/{id}
+    defaults: { _controller: MapBundle:Default:show}
+global_point:
+    path:     /
+    defaults: { _controller: MapBundle:Default:indexglobal }

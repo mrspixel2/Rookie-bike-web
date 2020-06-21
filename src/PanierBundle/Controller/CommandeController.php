@@ -3,6 +3,8 @@
 namespace PanierBundle\Controller;
 
 use PanierBundle\Entity\Commande;
+use GeneralBundle\Entity\Produitbou;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,9 +28,23 @@ class CommandeController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $commandes = $em->getRepository('PanierBundle:Commande')->findAll();
+        Produitbou::$count = 1; 
+        Produitbou::$somme = 1; 
 
-        return $this->render('commande/index.html.twig', array(
+        foreach ($commandes as $c) {
+           $p = $c->getProduit();  
+           foreach ($p as $prod) {
+            Produitbou::getCount() ;
+            Produitbou::$somme = $prod->getPrix()+ Produitbou::getSomme() ;
+                   }
+        }
+       $total =  Produitbou::getCount();
+       $somme =  Produitbou::getSomme() ;
+        return $this->render('commande/index1.html.twig', array(
             'commandes' => $commandes,
+            'total' => $total,
+            'somme' => $somme,
+
         ));
     }
     public function mescommandeAction()
@@ -66,7 +82,7 @@ class CommandeController extends Controller
     /**
      * Lists all commande entities.
      *
-     */
+     */ 
     public function saveAction()
     {
         if($this->get('security.authorization_checker')->isGranted("IS_AUTHENTICATED_FULLY")){
@@ -219,7 +235,19 @@ class CommandeController extends Controller
 
         return $this->redirectToRoute('mes_commande');
     }
+    public function delete2Action(Request $request, Commande $commande)
+    {
+        $form = $this->createDeleteForm($commande);
+        $form->handleRequest($request);
 
+      //  if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($commande);
+            $em->flush();
+       // }
+
+        return $this->redirectToRoute('commande_index');
+    }
     /**
      * Creates a form to delete a commande entity.
      *

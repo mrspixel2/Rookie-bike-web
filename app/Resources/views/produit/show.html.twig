@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+            <div class="container">
 
     <!--Start shop single-->
     <section class="tz-shop-single">
@@ -69,10 +70,9 @@
             </div>
 
     <ul>
-        <li>
-            <a href="{{ path('Espace_index') }}">Retour</a>
-        </li>
-
+         <button>
+     <a href="{{ path('Espace_index') }}">Retour</a>
+                   </button>   
 
     </ul>
 {% endblock %}

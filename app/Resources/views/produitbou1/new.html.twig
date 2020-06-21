@@ -1,0 +1,94 @@
+{% block body %}
+                </br>
+
+<div class="col-md-8 tz-blog-content">
+        <h1 class="large-ttle">Contacter venduer</h1>
+        <div id="contact-form" class="contact-respond">
+            <h3 class="tz-title">Envoyer un message</h3>
+            <form id="commentform" class="contact-form-7">
+                    <p class="comment-for-url">
+               
+                </p>
+                <p class="comment-for-author">
+                        <input disabled type="text" class="url" placeholder="{{app.user.Firstname}}" value="{{app.user.firstname}}">
+                        
+                </p>
+                <p class="comment-for-email">
+                        <input disabled type="text" class="url" placeholder="{{app.user.Lastname}}" value="{{app.user.firstname}}">
+               
+                </p>
+                <p class="comment-for-url">
+                        Produit : 
+                    </p>
+                        <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Reference</th>
+            <th scope="col">localisation</th>
+            <th scope="col">nom</th>
+            <th scope="col">email</th>
+            <th scope="col">Action</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+
+                <p id ="produit">                    
+                </p>
+                
+         
+        </tbody>
+    </table>
+       <p class="comment-for-url">
+                        Montant : 
+        </p>
+           <p class="comment-for-submit">
+                    <input name="submit" type="button" onclick="myFunction()" id="submit" class="submit" value="Submit form">
+                </p>
+             </tr>
+       
+        </div>
+        
+    </div>
+    </div>
+</div>
+</div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+$(function() {
+myFunction1();
+});
+
+      function myFunction1() {
+          var entitySelector = $("#produit").html('');
+    $.ajax({
+    type: "POST",
+    url: "{{ path('get_panier') }}",
+    data: {
+    },
+    dataType: "text",
+    success: function(msg)
+ 
+    {   
+        var result = JSON.parse(msg);
+                                $.each(result, function(key, msg) {
+                                    console.log(msg);
+              entitySelector.append('' +
+      ' <p class="comment-for-url">'
+                    
+               ' </p>'
+              
+                                ); });
+                    
+    myFunction4();
+        }
+    })
+    };
+
+     </script>
+{% endblock %}    

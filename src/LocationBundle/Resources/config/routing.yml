@@ -1,0 +1,75 @@
+Location:
+    path:     /
+    defaults: { _controller: LocationBundle:Default:index }
+
+location_index:
+    path:     /res/index
+    defaults: { _controller: LocationBundle:Res:index }
+
+location_edit:
+    path:     /res/edit
+    defaults: { _controller: LocationBundle:Res:edit }
+
+location_show:
+    path:     /res/show/{id}
+    defaults: { _controller: LocationBundle:Res:show }
+
+location_delete:
+    path:     /res/delete/{id}
+    defaults: { _controller: LocationBundle:Res:delete }
+
+location_ajouter:
+    path:     /res/ajouter
+    defaults: { _controller: LocationBundle:Res:ajouter }
+
+velo_index:
+    path:     /velo/index
+    defaults: { _controller: LocationBundle:Velo:index }
+
+velo_edit:
+    path:     /velo/edit/{id}
+    defaults: { _controller: LocationBundle:Velo:edit }
+
+velo_delete:
+    path:     /velo/delete/{id}
+    defaults: { _controller: LocationBundle:Velo:delete }
+
+velo_show:
+    path:     /velo/show/{id}
+    defaults: { _controller: LocationBundle:Velo:show }
+
+velo_ajouter:
+    path:     /velo/ajouter
+    defaults: { _controller: LocationBundle:Velo:ajouter }
+
+point_index:
+    path:     /point/index
+    defaults: { _controller: LocationBundle:Pointlocation:index }
+point_edit:
+    path:     /point/edit/{id}
+    defaults: { _controller: LocationBundle:Pointlocation:edit }
+
+point_ajouter:
+    path:     /point/ajouter
+    defaults: { _controller: LocationBundle:Pointlocation:ajouter }
+
+point_delete:
+    path:    /point/delete/{id}
+    defaults: { _controller: LocationBundle:Pointlocation:delete }
+
+point_show:
+    path:    /point/show/{id}
+    defaults: { _controller: LocationBundle:Pointlocation:show }
+
+
+client_index:
+        path:    /client/index
+        defaults: { _controller: LocationBundle:Pointlocation:cindex}
+
+client_res:
+    path:     /client/reser/{id}
+    defaults: { _controller: LocationBundle:Res:reservation }
+
+client_liste:
+        path:     /client/liste
+        defaults: { _controller: LocationBundle:Res:liste }

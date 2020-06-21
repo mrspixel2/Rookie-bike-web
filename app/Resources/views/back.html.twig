@@ -12,11 +12,12 @@
     <meta name="author" content="SmartUniversity" />
 
     {% block title %}
-        <title>Genius</title>
+        <title>RookyBike</title>
     {% endblock %}
 
     <!-- google font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+
     <!-- icons -->
     <link href="{{ asset ('back/fonts/simple-line-icons/simple-line-icons.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset ('back/fonts/font-awesome/css/font-awesome.min.css')}}"rel="stylesheet" type="text/css" />
@@ -51,8 +52,8 @@
             <!-- logo start -->
             <div class="page-logo">
                 <a href="index-2.html">
-                    <span class="logo-icon material-icons fa-rotate-45">school</span>
-                    <span class="logo-default">Genius</span> </a>
+                    <span class="logo-icon material-icons fa-rotate-45">Roocky</span>
+                    <span class="logo-default">Bike</span> </a>
             </div>
             <!-- logo end -->
             <ul class="nav navbar-nav navbar-left in">
@@ -380,271 +381,62 @@
 
 
                         <li class="nav-item">
-                            <a href="event.html" class="nav-link nav-toggle">
-                                <span class="title">Evenements</span><span class="arrow"></span>
+                            <a href="#" class="nav-link nav-toggle">
+                                <span class="title">Espace Particulier</span> <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="all_professors.html" class="nav-link "> <span class="title">
-												liste des evenements</span>
+                                    <a href="{{path('Espace_stat')}}"  class="nav-link "> <span class="title">
+											Statistique
+                                            </span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add_professor.html" class="nav-link "> <span class="title">ajouter
-												evenement</span>
+                                    <a href="{{path('reclamation_index')}}" class="nav-link "> <span class="title">Listes
+												Reclamations</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="add_professor_bootstrap.html" class="nav-link "> <span
-                                                class="title">ajouter evenement Bootstrap</span>
+                                 <li class="nav-item">
+                                    <a href="{{path('Espace_produits')}}" class="nav-link "> <span class="title">Listes
+												produit</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="edit_professor.html" class="nav-link "> <span class="title">modifier
-												evenement</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="professor_profile.html" class="nav-link "> <span class="title">profile
-												evenement</span>
-                                    </a>
-                                </li>
+                        
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link nav-toggle">
-                                <span class="title">Enseignants</span> <span class="arrow"></span>
-                            </a>
+                                <span class="title">Commandes</span><span class="arrow"></span></a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="all_professors.html" class="nav-link "> <span class="title">
-												liste des enseignants</span>
+                                    <a href="{{path('commande_index')}}" class="nav-link "> <span class="title">liste
+												des commandes</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="add_professor.html" class="nav-link "> <span class="title">ajouter
-												enseignant</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="add_professor_bootstrap.html" class="nav-link "> <span
-                                                class="title">ajouter enseignant Bootstrap</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="edit_professor.html" class="nav-link "> <span class="title">modifier
-												enseignant</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="professor_profile.html" class="nav-link "> <span class="title">profile
-												enseignant</span>
-                                    </a>
-                                </li>
+                               
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link nav-toggle">
-                                <span class="title">Elèves</span><span class="arrow"></span></a>
+                                <span class="title">Location Velo</span><span class="arrow"></span></a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="all_students.html" class="nav-link "> <span class="title">liste
-												des élèves</span>
+                                    <a href="{{ path( 'velo_index') }}" class="nav-link "> <span class="title">Liste Des Velos</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add_student.html" class="nav-link "> <span class="title">ajouter
-												élève</span>
+                                    <a href="{{ path('point_index') }}" class="nav-link "> <span class="title">Liste Des Points</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add_student_bootstrap.html" class="nav-link "> <span class="title">ajouter
-												élève Bootstrap</span>
+                                    <a href="{{ path('location_index') }}"class="nav-link "> <span class="title">Reservations</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="edit_student.html" class="nav-link "> <span class="title">modifier
-												élève</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="student_profile.html" class="nav-link "> <span class="title">profile
-												élève</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link nav-toggle">
-                                <span class="title">Parents</span><span class="arrow"></span></a>
-                            <ul class="sub-menu">
-                                <li class="nav-item">
-                                    <a href="all_students.html" class="nav-link "> <span class="title">liste
-												des parents</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="add_student.html" class="nav-link "> <span class="title">ajouter
-												parent</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="add_student_bootstrap.html" class="nav-link "> <span class="title">ajouter
-												patrent Bootstrap</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="edit_student.html" class="nav-link "> <span class="title">modifier
-												parent</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="student_profile.html" class="nav-link "> <span class="title">profile
-												parents</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item active open">
-                            <a href="#" class="nav-link nav-toggle">
-                                <span class="title"> Gestion des Cours</span><span class="arrow"></span></a>
-                            <ul class="sub-menu">
-                                <li class="nav-item">
-                                    <a href="" class="nav-link "> <span class="title">liste
-												des cours</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link "> <span class="title">ajouter
-												cours</span>
-                                    </a>
-                                </li>
-
-
 
                             </ul>
                         </li>
-                        </li>
-                        <li class="nav-item active open">
-                        <li class="nav-item active open">
-                            <a href="#" class="nav-link nav-toggle">
-                                <span class="title"> Gestion des Series</span><span class="arrow"></span></a>
-                            <ul class="sub-menu">
-                                <li class="nav-item">
-                                    <a href="" class="nav-link "> <span class="title">liste
-												des series </span>
-                                    </a>
-                                </li>
-
-
-
-
-                            </ul>
-                        </li>
-                        <li class="nav-item active open">
-                            <a href="#" class="nav-link nav-toggle">
-                                <span class="title"> Gestion des avis </span><span class="arrow"></span></a>
-                            <ul class="sub-menu">
-                                <li class="nav-item">
-                                    <a href="listavis" class="nav-link "> <span class="title">liste
-												des avis</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="ajoutavis" class="nav-link "> <span class="title">ajouter
-												avis</span>
-                                    </a>
-                                </li>
-
-
-
-                            </ul>
-                        </li>
-                        </li>
-                        <li class="nav-item active open">
-                            <a href="#" class="nav-link nav-toggle">
-                                <span class="title">Cantine</span><span class="arrow"></span></a>
-                            <ul class="sub-menu">
-                                <li class="nav-item">
-                                    <a href="all_courses.html" class="nav-link "> <span class="title">liste
-												des menus</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="add_course.html" class="nav-link "> <span class="title">ajouter
-												Menu</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item active open">
-                                    <a href="add_course_bootstrap.html" class="nav-link "> <span class="title">ajouter
-												Menu Bootstrap</span>
-                                        <span class="selected"></span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="edit_course.html" class="nav-link "> <span class="title">modifier
-												Menu</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="all_courses.html" class="nav-link "> <span class="title">liste
-												des plats</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="add_course.html" class="nav-link "> <span class="title">ajouter
-												plat</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item active open">
-                                    <a href="add_course_bootstrap.html" class="nav-link "> <span class="title">ajouter
-												plat Bootstrap</span>
-                                        <span class="selected"></span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="edit_course.html" class="nav-link "> <span class="title">modifier
-												plat</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link nav-toggle">
-                                <span class="title">Clubs</span><span class="arrow"></span></a>
-                            <ul class="sub-menu">
-                                <li class="nav-item">
-                                    <a href="all_students.html" class="nav-link "> <span class="title">liste
-												des clubs</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="add_student.html" class="nav-link "> <span class="title">ajouter
-												club</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="add_student_bootstrap.html" class="nav-link "> <span class="title">ajouter
-												club Bootstrap</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="edit_student.html" class="nav-link "> <span class="title">modifier
-												club</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="student_profile.html" class="nav-link "> <span class="title">profile
-												clubs</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="widget.html" class="nav-link nav-toggle"> <i class="material-icons">widgets</i>
-                                <span class="title">Widget</span>
-                            </a>
-                        </li>
+                        
+                  
                     </ul>
                 </div>
             </div>

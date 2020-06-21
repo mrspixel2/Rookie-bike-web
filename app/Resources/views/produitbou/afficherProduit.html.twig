@@ -45,13 +45,61 @@
                     <!--Shop content-->
                     <div class="entry-summary">
                         <h1>{{ produitbou.nom }}</h1>
-                        <span class="p-vote">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                        </span>
+                        <div class="pc-meta">
+                        <div class="rating" id="#rat">
+                            {% if is_granted('ROLE_USER') %}
+                                {% for i in 1.. rat %}
+                                    <i class="fa fa-star" width="20px" data-index="{{ i }}" onclick="rating({{ i }},{{ produitbou.id }})"></i>
+                                {% endfor %}
+                                {% if  rat  < 5 %}
+                                    {% for i in rat..4 %}
+                                        <i class="fa fa-star" aria-hidden="true" style="color: white" data-index="{{ i }}" onclick="rating({{ i+1 }},{{ produitbou.id }})" width="20px"></i>
+                                    {% endfor %}
+                                {% endif %}
+                            {% else %}
+                                {% for i in 1..rat %}
+                                    <i class="fa fa-star" width="20px"></i>
+                                {% endfor %}
+                                {% if rat < 5 %}
+                                    {% for i in rat..4 %}
+                                        <i class="fa fa-star" width="20px"></i>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                            <script>
+
+                                var rateIndex = -1;
+                                $(document).ready(function(){
+                                    $('.fa-star').on('click', function(){
+                                        rateIndex = parseInt($(this).data('index'));
+                                    });
+                                    $('.fa-star').mouseover(function(){
+                                        resetStarColors();
+                                        var currentIndex = parseInt($(this).data('index'));
+                                        for (var i=0; i <= currentIndex; i++)
+                                        {
+                                            $('.fa-star:eq('+i+')').css('color', 'yellow');
+                                        }
+
+                                    });
+                                    $('.fa-star').mouseleave(function(){
+                                        if(rateIndex = -1)
+                                        {
+                                            for (var i=0; i <= currentIndex; i++)
+                                            {
+                                                $('.fa-star:eq('+i+')').css('color', 'yellow');
+                                            }
+                                        }
+
+                                    });
+                                });
+                                function resetStarColors(){
+                                    $('.fa-star').css('color', 'white');
+                                }
+
+                            </script>
+                        </div>
                         <p class="product-price">
                             <span class="price">${{ produitbou.prix }}</span>
                             <span class="stock">Availability:  <span>{{ produitbou.qtetotal }}</span></span>
@@ -73,11 +121,11 @@
                                 </span>
                                 <span class="tzqty">
                                     <label>Qty:</label>
-                                    <input type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="input-text qty text" size="4">
+                                    <input type="number" step="1" min="1" name="quantity" value="1" id="qte" title="Qty" class="input-text qty text" size="4">
                                 </span>
                             </p>
                             <p>
-                                <button type="submit" class="single_add_to_cart_button">Add to cart</button>
+                                                <a onclick="myFunction({{produitbou.id}})" class="add-to-cart">Add to cart</a>
                                 <button type="submit" class="single_add_to_wishlist">add to wishlist</button>
                             </p>
                         </form>
@@ -87,37 +135,177 @@
 
             </div>
         </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-        <!--Shop tabs-->
-        <div class="tz-shop-tabs">
-            <div class="container">
-                <div class="tab-head">
-                    <ul class="nav nav-tabs">
-                        <li role="presentation" class="active"><a href="#description" data-toggle="tab">Description</a></li>
-                        <li role="presentation"><a href="#reviews" data-toggle="tab">Reviews</a></li>
-                        <li role="presentation"><a href="#information" data-toggle="tab">Information</a></li>
-                    </ul>
-                </div>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="description">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla. Donec a neque libero. Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi. Cras neque metus, consequat et blandit et, luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam erat mi, rutrum at sollicitudin rhoncus, ultricies posuere erat. Duis convallis, arcu nec aliquam consequat, purus felis vehicula felis, a dapibus enim lorem nec augue.</p>
-                    </div>
-                    <div class="tab-pane" id="reviews">
-                        <p> Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi Lorem ipsum dolor sit amet, consectetur adipiscing elit. ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla. Donec a neque libero. Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi. Cras neque metus, consequat et blandit et, luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam erat mi, rutrum at sollicitudin rhoncus, ultricies posuere erat. Duis convallis, arcu nec aliquam consequat, purus felis vehicula felis, a dapibus enim lorem nec augue.</p>
-                    </div>
-                    <div class="tab-pane" id="information">
-                        <p> Cras neque metus, consequat et blandit et, luctus a nunc.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla. Donec a neque libero. Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam erat mi, rutrum at sollicitudin rhoncus, ultricies posuere erat. Duis convallis, arcu nec aliquam consequat, purus felis vehicula felis, a dapibus enim lorem nec augue.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--End tab-->
+<script type="text/javascript">
+$(function() {
+myFunction1();
+});
 
+      function myFunction1() {
+          var entitySelector = $("#panier").html('');
+    $.ajax({
+    type: "POST",
+    url: "{{ path('get_panier') }}",
+    data: {
+    },
+    dataType: "text",
+    success: function(msg)
+ 
+    {   
+        var result = JSON.parse(msg);
+                                $.each(result, function(key, msg) {
+                                    console.log(msg);
+              entitySelector.append('' +
+              	
+       ' <li class="mini-cart-content">'
+    +'<div class="mini-cart-img"> <img src="http://localhost/pidev/web/images/'+msg[3]+'") }}" style="width: 120px;height: 50px;" alt="'+msg[3]+'"></div>'
+               +  '   <div class="mini-cart-ds">'
+                    +   ' <h6><a href="single-product.html">'+msg[2]+'</a></h6>'
+                       +' <span class="mini-cart-meta">'
+                           +'             <a href="single-product.html">'+msg[5]+'</a>'
+                               +'         <span class="mini-meta">'
+                                   +'        <span class="mini-qty">Qty'+msg[1] +'</span>'
+                                      +'  </span>'
+                                  +'  </span>'
+                  +'  </div>'
+                 +'   <span class="mini-cart-delete" onclick="myFunction3('+msg[0]+','+1+')"><img src="{{asset('images/delete.png')}}" alt="delete"></span>'
+               +' </li>'
+              
+                                ); });
+                    
+    myFunction4();
+        }
+    })
+    };
+
+     
+    
+function myFunction(a) {
+               $("#panier").html("");
+
+     var r = confirm("Confirmer!");
+  if (r == false) {
+  
+  } else {
+   
+    $.ajax({
+    type: "POST",
+    url: "{{ path('add_to_panier') }}",
+    data: {
+        'id' : a,
+        'qte':  document.getElementById("qte").value
+    },
+    dataType: "text",
+    success: function(msg){
+        myFunction1();
+    }
+});
+   }}
+
+function myFunction4() {
+           
+   
+    $.ajax({
+    type: "POST",
+    url: "{{ path('montant_panier') }}",
+    data: {
+    },
+    dataType: "text",
+    success: function(msg){
+        if (msg != 0 ) {
+             $("#panier").append(''
+         +'   <li class="mini-subtotal">'
+                +'                <span class="subtotal-content">'
+                       +'             Subtotal:'
+                          +'          <strong class="pull-right"> '+msg+' dt </strong>'
+                            +'    </span>'
+               +' </li>'
+               +' <li class="mini-footer">'
+                +'    <a href="#" onclick="myFunction2()" class="view-cart">Vider Cart</a>'
+                 +'   <a href="{{path("passer_commande")}}" class="check-out">Checkout</a>'
+               +' </li>'); }
+         if (msg == 0 ) {
+             $("#panier").append(''
+         +'   <li class="mini-subtotal">'
+                +'                <span class="subtotal-content">'
+                       +'             Subtotal:'
+                          +'          <strong class="pull-right"> '+msg+' dt </strong>'
+                            +'    </span>'
+               +' </li>'
+              ); }
+        
+                $("#prix").html(msg);
+               
+    }
+});
+   }
+function myFunction2() {
+    
+    $.ajax({
+    type: "POST",
+    url: "{{ path('empty_panier') }}",
+    data: {
+    },
+    dataType: "text",
+    success: function(msg){
+        $("#panier").html("");
+           myFunction1();
+    }
+});
+   }
+function myFunction3(id,qte) {
+    
+    $.ajax({
+    type: "POST",
+    url: "{{ path('delete_from_panier') }}",
+    data: {'id':id,
+        'qte':qte
+    },
+    dataType: "text",
+    success: function(msg){
+           $("#panier").html("");
+           myFunction1();
+    }
+});
+   }
+     </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            function rating(pos,id){
+                $.ajax({
+                    type: "GET",
+                    url :  "{{ path('produit_rating') }}",
+                    data: {
+                        'rat' : pos,
+                        'id':id
+                    },
+                    success: function(){
+                        $(".rating").empty();
+                        for (var i=0; i<pos; i++) {
+                            $(".rating").append('' +
+                                '<img src="C:/wamp64/www/PIDEV1/web/client/img/star-solid.svg" width="20px">'
+                            );
+                        }
+                        if(pos<5){
+                            for (var i=pos ;i<5;i++)
+                                $(".rating").append('' +
+                                    '<img src="C:/wamp64/www/PIDEV1/web/client/img/star-regular.svg" width="20px" >'
+                                );
+                        }
+
+                    }
+                });
+
+            }
+
+        </script>
+      
 
     </section>
     <!--End Shop single-->
+
+{% endblock %}
+{% block js %}
 
 {% endblock %}

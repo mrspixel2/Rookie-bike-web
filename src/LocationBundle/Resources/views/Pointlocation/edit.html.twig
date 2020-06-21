@@ -1,0 +1,62 @@
+{% extends "::back.html.twig" %}
+
+{% block title %}LocationBundle:Pointlocation:edit{% endblock %}
+
+{% block body %}
+
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Locations</li>
+                <li class="breadcrumb-item active"><a href="{{ path('point_index') }}">Points de Relais</a></li>
+                <li class="breadcrumb-item active"><a href="{{ path('point_ajouter') }}">Ajouter</a></li>
+            </ol>
+        </div>
+        <div class="col-md-7 align-self-center text-right">
+            <div class="d-flex justify-content-end align-items-center">
+
+                <a href="{{ path('point_ajouter') }}"  type="button" class="btn btn-info "><i class="fa fa-plus-circle"></i> Ajouter</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Modifier Votre Points Relais</h4>
+                    <form method="post"  enctype="multipart/form-data">
+                        {{ form_start(form) }}
+                        <div class="form-group ">
+                            <label for="desc"  class="control-label">Region</label>
+                            <input value="{{velo.region}}" type="text" class="form-control"  id="Region"  name="Region" minlength="4" maxlength="300" required >
+                        </div>
+                        <div class="form-group ">
+                            <label for="desc"  class="control-label">Nom</label>
+                            <input value="{{velo.nom}}" type="text" class="form-control"  id="nom" name="nom" minlength="4" maxlength="300" required >
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="desc"  class="control-label">Langitude</label>
+                            <input value="{{velo.langitude}}" type="text" class="form-control"  id="longitude"  name="longitude" minlength="4" maxlength="300" required >
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="desc"  class="control-label">Latitude</label>
+                            <input value="{{velo.latitude}}" type="text" class="form-control"  id="latitude"  name="latitude" minlength="4" maxlength="300" required >
+                        </div>
+
+
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i>Modifier</button>
+                            <a type="button" class="btn btn-secondary" href="{{ path('point_index') }}">Annuler</a>
+                        </div>
+                        {{ form_end (form) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

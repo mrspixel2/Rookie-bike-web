@@ -33,3 +33,8 @@ commande_delete:
     path:     /{id}/delete
     defaults: { _controller: "PanierBundle:Commande:delete" }
     methods:  [GET, DELETE]
+
+commande_delete2:
+    path:     /{id}/delete
+    defaults: { _controller: "PanierBundle:Commande:delete2" }
+    methods:  [GET, DELETE]

@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Reclamation creation</h1>
+   <div class="container">
+
+    <h1>Passer Reclamation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -10,7 +12,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('reclamation_index') }}">Back to the list</a>
+            <a href="{{ path('Espace_index') }}">Retour</a>
         </li>
     </ul>
 {% endblock %}

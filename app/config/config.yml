@@ -5,6 +5,7 @@ imports:
     - { resource: "@GeneralBundle/Resources/config/services.yml" }
     - { resource: "@EspaceClientBundle/Resources/config/services.yml" }
     - { resource: "@PanierBundle/Resources/config/services.yml" }
+    - { resource: "@LocationBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -99,4 +100,13 @@ knp_snappy:
         enabled:    true
         binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
         options:    []
-
+# NotificationsBundle configuration
+notifications:
+    app_id:     979076
+    app_key:    36183c69e33362653425
+    app_secret: d591fba579c54fbcada8
+    cluster:    eu
+    # Optional
+    # Default false: work without ssl encryption
+    # Set it to true to work with ssl encryption
+    encrypted:  false

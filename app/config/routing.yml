@@ -1,3 +1,7 @@
+location:
+    resource: "@LocationBundle/Resources/config/routing.yml"
+    prefix:   /
+
 panier:
     resource: "@PanierBundle/Resources/config/routing.yml"
     prefix:   /
@@ -19,3 +23,12 @@ app:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+general_store:
+    resource: "@GeneralBundle/Controller/StoreController.php"
+    type:     annotation
+
+general_produitbou:
+    resource: "@GeneralBundle/Controller/ProduitbouController.php"
+    type:     annotation
+
+

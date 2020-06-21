@@ -3,7 +3,7 @@
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
-
+use SBC\NotificationsBundle\NotificationsBundle;
 class AppKernel extends Kernel
 {
     public function registerBundles()
@@ -24,6 +24,12 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),
             new PanierBundle\PanierBundle(),
+            new LocationBundle\LocationBundle(),
+            new MapBundle\MapBundle(),
+            new NotificationsBundle(),
+            new blackknight467\StarRatingBundle\StarRatingBundle(),
+
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

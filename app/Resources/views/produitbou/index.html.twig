@@ -1,28 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <!--Shop meta-->
-<nav class="tz-menu-primary">
                 <div class="container">
-    <ul class="tz-ecommerce-meta pull-right">
-        <li class="tz-menu-wishlist">
-            <a href="#"><strong>0</strong></a>
-        </li>
-        <li class="tz-mini-cart">
-            <a href="shop-cart.html"><strong>2</strong>Cart : <d id ="prix"></d> dt</a>
 
-            <!--Mini cart-->
-            <ul class="cart-inner" id="panier">
-                
-               
-              
-            </ul>
-            <!--End mini cart-->
+    <!--Start shop-->
+    <div class="tz-shop">
+        <div class="container">
+            <div class="row">
 
-        </li>
-    </ul>
-    <!--End Shop meta-->
-
+    
     <!--navigation mobi-->
     <button data-target=".nav-collapse" class="btn-navbar tz_icon_menu" type="button">
         <i class="fa fa-bars"></i>
@@ -74,7 +60,7 @@
                                 <!--End button contro-->
 
                                 <!--Shop order-->
-                                <form class="shop-order">
+                                <form class="shop-order" action="{{ path('produit_searchPPS') }}" method="GET">
                                     <label class="form-arrow">
                                         <select class="number-item" name="number_item">
                                             <option value="12">12 items/page</option>
@@ -82,14 +68,12 @@
                                             <option value="3">3 items/page</option>
                                         </select>
                                     </label>
-                                    <label class="form-arrow">
-                                        <select name="orderby" class="orderby">
-                                            <option value="'">Sort By: Position</option>
-                                            <option value="rating">Sort by rating</option>
-                                            <option value="date">Sort by newness</option>
-                                        </select>
-                                    </label>
+                                    <!-- Search form -->
+                                    <div class="md-form mt-0">
+                                        <input name="search2"  class="form-control" type="text" placeholder="Nom du store"  aria-label="Search">
+                                    </div>
                                 </form>
+
                                 <!--End shop order-->
 
                             </div>
@@ -107,14 +91,13 @@
                                             <img src="{{ asset('images/'~produitbou.image) }}" alt="{{ produitbou.nom }}">
                                         </div>
                                         <div class="product-info">
+                                            <h4><a href="{{ path('produitbou_afficher', { 'id': produitbou.id }, 'afficher') }}">{{ produitbou.nom }}</a></h4>
                                             <span class="p-meta">
                                                 <span class="p-price">${{ produitbou.prix }}</span>
                                                 <span class="p-vote">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
+                                                    <div class="rating">
+                                                        {{ 2 | rating }}
+                                                    </div>
                                                 </span>
                                             </span>
                                             <span class="p-color">
@@ -131,6 +114,7 @@
                                                 <a onclick="myFunction({{produitbou.id}},1)" class="add-to-cart">Add to cart</a>
                                                 <a href="#" class="add-to-wishlist"><i class="fa fa-heart"></i> Add to wishlist</a>
                                                <span class="quick-view">
+                                                    <a href="{{ path('produitbou_afficher', { 'id': produitbou.id }) }}"><i class="fa fa-eye"></i> Quick view</a>
                                                 </span>
                                             </span>
                                         </div>
@@ -145,31 +129,9 @@
                         {% endfor %}
 
                         <!--Pagination-->
-                        <nav class="pagination">
-                            <ul class="pagination_list pull-right">
-                                <li>
-                                    <a href="shop.html">1</a>
-                                </li>
-                                <li>
-                                    <span class="current">2</span>
-                                </li>
-                                <li>
-                                    <a href="shop.html">3</a>
-                                </li>
-                                <li>
-                                    <a href="shop.html">4</a>
-                                </li>
-                                <li>
-                                    <a href="shop.html">5</a>
-                                </li>
-                                <li>
-                                    <span>...</span>
-                                </li>
-                                <li>
-                                    <a href="shop.html">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div class="navigation text-center">
+                            {{ knp_pagination_render(produitbous) }}
+                        </div>
                         <!--End Pagination-->
 
                     </div>
@@ -426,7 +388,7 @@ myFunction1();
               entitySelector.append('' +
               	
        ' <li class="mini-cart-content">'
-    +'<div class="mini-cart-img"> <img src="http://localhost/pidev/web/images/'+msg[3]+'") }}" style="width: 120px;height: 50px;" alt="'+msg[3]+'"></div>'
+    +'<div class="mini-cart-img"> <img src="http://localhost/pide/web/images/'+msg[3]+'") }}" style="width: 120px;height: 50px;" alt="'+msg[3]+'"></div>'
                +  '   <div class="mini-cart-ds">'
                     +   ' <h6><a href="single-product.html">'+msg[2]+'</a></h6>'
                        +' <span class="mini-cart-meta">'

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<style>
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    /* Always set the map height explicitly to define the size of the div
+    * element that contains the map. */
+    #map {
+        height: 100%;
+    }
+</style>
+<style>
+
+
+
+    #map {height:550px ;width:660px; }
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+<div id="map"></div> </div>
+<div class="col-md-4">
+    <ul>
+        <h3 >Liste des vélos</h3>
+    {% for velo in velo %}
+            {% if velo.idPoint.id == ptrel.id  %}
+
+                <img src="{{ asset('images/'~velo.image) }}" class="img-responsive">
+        <ul><h4> {{ velo.model }} </h4>
+                    <li>Matricule : {{ velo.matricule }}</li>
+                <li>Prix : {{ velo.prix }} <small class="text-success"> DT  / H </small></li></ul></li>
+
+            {% endif %}
+    {% endfor %}
+    </ul>
+</div>
+    </div>
+</div>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
+<style>
+</style>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
+
+<script>
+
+    var user_location = [{{ptrel.latitude}},{{ptrel.langitude }} ]
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZmFraHJhd3kiLCJhIjoiY2pscWs4OTNrMmd5ZTNra21iZmRvdTFkOCJ9.15TZ2NtGk_AtUvLd27-8xA';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: user_location,
+        zoom: 10
+    });
+    //  geocoder here
+    var geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        // limit results to Australia
+        //country: 'IN',
+    });
+
+    var marker ;
+
+    // After the map style has loaded on the page, add a source layer and default
+    // styling for a single point.
+    map.on('load', function() {
+        addMarker(user_location,'load');
+
+        // Listen for the `result` event from the MapboxGeocoder that is triggered when a user
+        // makes a selection and add a symbol that matches the result.
+        geocoder.on('result', function(ev) {
+            alert("aaaaa");
+            console.log(ev.result.center);
+
+        });
+    });
+
+    function addMarker(ltlng,event) {
+
+        marker = new mapboxgl.Marker({draggable: false,color:"#d02922"})
+            .setLngLat(user_location)
+            .addTo(map)
+            .on('dragend', onDragEnd);
+    }
+
+
+
+
+
+
+    document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+
+</script>

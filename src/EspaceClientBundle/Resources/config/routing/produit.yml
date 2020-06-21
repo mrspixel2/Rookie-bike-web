@@ -2,6 +2,10 @@ Espace_index:
     path:     /
     defaults: { _controller: "EspaceClientBundle:Produit:index" }
     methods:  GET
+Espace_produits:
+    path:     /produits
+    defaults: { _controller: "EspaceClientBundle:Produit:produits" }
+    methods:  GET
 
 Espace_show:
     path:     /{idvelo}/show
@@ -40,4 +44,8 @@ Espace_edit:
 Espace_delete:
     path:     /{idvelo}/delete
     defaults: { _controller: "EspaceClientBundle:Produit:delete" }
+    methods:  [GET, DELETE]
+Espace_delete2:
+    path:     /{idvelo}/del
+    defaults: { _controller: "EspaceClientBundle:Produit:delete2" }
     methods:  [GET, DELETE]
